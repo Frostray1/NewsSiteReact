@@ -1,0 +1,15 @@
+@import '../components/Header/Header.scss';
+@import '../components/Content/Content.scss';
+@import '../components/Footer/Footer.scss';
+@import '../components/Sider/Sider.scss';
+
+*{
+    margin: 0;
+    padding: 0;
+    border-style: border-box;
+}
+
+.mainContent{
+    display: flex;
+    
+}
