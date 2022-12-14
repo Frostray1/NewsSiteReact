@@ -1,28 +1,22 @@
 
 import React from 'react';
-import { Layout } from 'antd';
+
 import './scss/app.scss';
-import Header from './components/Header/Header';
-import Content from './components/Content/Content';
-import Sider from './components/Sider/Sider';
-// import Footer from './components/Footer/Footer'
+
+import HomePage from './pages/HomePage/HomePage';
+import LoginPage from 'pages/LoginPage/LoginPage';
+import RegisterPage from 'pages/RegisterPage/RegisterPage';
+import {Routes, Route} from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <div className='mainContent'>
-        <Sider/>
-      <Content/>
-      
-      
-      </div>
-     
-     
-
-
-
-    </div>
+    // <HomePage/>
+    
+    <Routes>
+      <Route path='/' element={<HomePage/>}/>
+      <Route path='/login' element={<LoginPage/>}/>
+      <Route path='/register' element={<RegisterPage/>}/>
+    </Routes>
   );
 }
 
