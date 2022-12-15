@@ -3,11 +3,24 @@ import { Link } from "react-router-dom"
 
 const LoginPage = () => {
     return(
-        <div>
-            <h1>Login</h1>
-            <Login/>
-            <p>Or <Link to="/register">RegisterPage</Link></p>
-            <p> <Link to="/">home</Link></p>
+        <div className="loginPage">
+            <div className="loginPage__window">
+                <div className="auth_text">
+                    <h1>Авторизация</h1>
+                </div>
+                
+                <Login/>
+                <div className="aboutRegister">
+                    <p>У вас еще нет акаунта? Тогда <Link to="/register">зарегестрируйтесь</Link></p>
+                    {/* <p> <Link to="/">home</Link></p> */}
+                </div>
+                
+                
+                
+            
+            
+            </div>
+            
         </div>
     )
 }

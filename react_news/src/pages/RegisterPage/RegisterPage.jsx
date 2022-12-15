@@ -3,13 +3,26 @@ import { Link } from "react-router-dom"
 
 const RegisterPage = () => {
     return(
-        <div>
-            <h1>Register</h1>
+        <div className="registerPage">
+        <div className="registerPage__window">
+            <div className="register_text">
+                <h1>Регистрация</h1>
+            </div>
+        
             <SignUp/>
-            <p>
-                alredy have account? <Link to='/login'> Sign up</Link>
-            </p>
+            <div className="aboutlogin">
+                <p>У уже есть аккаунт? <Link to="/login">Авторизируйтесь</Link></p>
+                {/* <p> <Link to="/">home</Link></p> */}
+            </div>
+            
+            
+            
+        
+        
         </div>
+        
+    </div>
+        
     )
 }
 export default RegisterPage
