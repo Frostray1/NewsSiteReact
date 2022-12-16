@@ -11,7 +11,7 @@ const RegisterPage = () => {
         
             <SignUp/>
             <div className="aboutlogin">
-                <p>У уже есть аккаунт? <Link to="/login">Авторизируйтесь</Link></p>
+                <p>Уже есть аккаунт? <Link to="/login">Авторизируйтесь</Link></p>
                 {/* <p> <Link to="/">home</Link></p> */}
             </div>
             

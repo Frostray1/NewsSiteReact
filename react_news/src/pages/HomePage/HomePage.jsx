@@ -3,6 +3,8 @@ import Content from '../../components/Content/Content';
 import Sider from '../../components/Sider/Sider';
 
 const HomePage =()  => {
+  
+
     return (
       <div className="HomePage">
         <Header/>
