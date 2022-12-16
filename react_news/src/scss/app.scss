@@ -5,6 +5,7 @@
 @import '../pages/LoginPage/LoginPage.scss';
 @import '../pages/RegisterPage/RegisterPage.scss';
 @import '../components/Auth/Form.scss';
+@import '../pages/ProfilePage/ProfilePage.scss';
 
 
 *{
@@ -16,5 +17,9 @@
 
 .mainContent{
     display: flex;
+    background:#eaeaea;
+}
+
+.NotFound{
     background:#eaeaea;
 }
