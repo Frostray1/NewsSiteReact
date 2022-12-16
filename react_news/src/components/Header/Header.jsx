@@ -8,11 +8,11 @@ import { useAuth, token } from 'hooks/use-auth';
 
 
 function Header() {
-    const {isAuth, token} = useAuth();
+    const {isAuth, email} = useAuth();
     
-   
+   console.log(isAuth);
 
-    return window.localStorage.getItem('user_token') ? (
+    return isAuth ? (
         <>
         <div className="header__container">
         <div className="logo">

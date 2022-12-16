@@ -20,6 +20,7 @@ const SignUp = ( ) => {
                 token:user.accesToken,
             }));
             window.localStorage.setItem('user_token', user.accessToken);
+            // window.localStorage.setItem('email', user.email);
             push('/');
         })
         .catch(console.error)

@@ -19,7 +19,8 @@ const Login = () =>{
                 id:user.uid,
                 token:user.accesToken,  
             }));
-            window.localStorage.setItem('user_token', user.accessToken);
+            // window.localStorage.setItem('user_token', user.accessToken);
+            // window.localStorage.setItem('email', user.email);
             push('/');
         })
             

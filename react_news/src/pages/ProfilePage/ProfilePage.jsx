@@ -11,10 +11,10 @@ function buttonsLogout (dispatch) {
 
 
 const ProfilePage = () => {
+    const {isAuth, email} = useAuth();
     let navigate = useNavigate();
-    const {email} = useAuth();
     const dispatch = useDispatch();
-    return window.localStorage.getItem('user_token') ? (
+    return isAuth ? (
        <div>
         
         <h1>{email}</h1>
