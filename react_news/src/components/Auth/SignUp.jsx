@@ -13,14 +13,11 @@ const SignUp = ( ) => {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth,email, password)
         .then(({user})=> {
-            // console.log(user);
             dispatch(setUser({
                 email:user.email,
                 id:user.uid,
                 token:user.accesToken,
             }));
-            window.localStorage.setItem('user_token', user.accessToken);
-            // window.localStorage.setItem('email', user.email);
             push('/');
         })
         .catch(console.error)

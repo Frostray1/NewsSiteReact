@@ -7,9 +7,7 @@ import { useAuth, token } from "hooks/use-auth";
 import { removeUser } from "store/slices/userSlice";
 import { useDispatch } from "react-redux";
 
-function buttonsLogout(dispatch) {
-  dispatch(removeUser());
-}
+
 
 function Header() {
   const { isAuth, email } = useAuth();
