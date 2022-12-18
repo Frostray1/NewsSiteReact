@@ -22,9 +22,6 @@ const ProfilePage = () => {
                 
             </div>
         </div>
-       
-        
-  
     </div>
   ) : (
     <Navigate replace to="/login" />

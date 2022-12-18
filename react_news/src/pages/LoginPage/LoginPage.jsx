@@ -8,11 +8,9 @@ const LoginPage = () => {
                 <div className="auth_text">
                     <h1>Авторизация</h1>
                 </div>
-                
                 <Login/>
                 <div className="aboutRegister">
                     <p>У вас еще нет акаунта? Тогда <Link to="/register">зарегестрируйтесь</Link></p>
-                    {/* <p> <Link to="/">home</Link></p> */}
                 </div>
                 
                 
