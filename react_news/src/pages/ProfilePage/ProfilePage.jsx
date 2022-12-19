@@ -3,6 +3,7 @@ import { useAuth } from "hooks/use-auth";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Sider from 'components/Sider/Sider';
 import { Button, Input } from 'antd';
+import AddPosts from 'components/Posts/AddPosts';
 
 const { TextArea } = Input;
 
@@ -13,14 +14,7 @@ const ProfilePage = () => {
         <Header/>
         <div className="navContent__block">
             <Sider/>
-            <div className="posts__block">
-                <div className="wrapper">
-                    <TextArea className='content__textInput' rows={10} />
-                    <Button className='postsBtn__create' type="primary">Создать пост</Button>
-                </div>
-
-                
-            </div>
+            <AddPosts/>
         </div>
     </div>
   ) : (
