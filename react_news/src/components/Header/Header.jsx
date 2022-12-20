@@ -20,7 +20,7 @@ function Header() {
     },
     {
       key: "2",
-      label: <Link to="/settings">Настройки</Link>,
+      label: <Link to="/profile-setting">Настройки</Link>,
     },
     {
       key: "3",

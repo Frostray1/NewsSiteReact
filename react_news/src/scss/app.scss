@@ -6,6 +6,7 @@
 @import '../pages/RegisterPage/RegisterPage.scss';
 @import '../components/Auth/Form.scss';
 @import '../pages/ProfilePage/ProfilePage.scss';
+@import '../components/ProfileSettings/ProfileSetting.scss';
 
 
 *{
@@ -13,6 +14,7 @@
     padding: 0;
     border-style: border-box;
     font-family: 'Noto Sans', sans-serif;
+    
 }
 
 .mainContent{
