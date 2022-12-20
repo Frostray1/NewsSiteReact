@@ -18,7 +18,7 @@ const SignUp = ( ) => {
                 id:user.uid,
                 token:user.accesToken,
             }));
-            push('/');
+            push('/profile-setting');
         })
         .catch(console.error)
     }
