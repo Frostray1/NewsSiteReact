@@ -1,12 +1,12 @@
-
-import { Button, Form, Input, Modal, Upload} from "antd";
+import { Button, Form, Input, Modal, Upload } from "antd";
 import { useAuth } from "hooks/use-auth";
 import writeUserData from "../WriteUserData";
-import { InboxOutlined, UploadOutlined } from '@ant-design/icons'
-import readDocument from '../../hooks/read-data-user'
-
-
-
+import { InboxOutlined } from "@ant-design/icons";
+import readDocument from "../../hooks/read-data-user";
+import { useState } from "react";
+import {UploadOutlined} from '@ant-design/icons';
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../../firebase";
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -40,28 +40,39 @@ const tailFormItemLayout = {
 
 const ProfileSetting = () => {
   const { id, email } = useAuth();
-
+  const [size, setSize] = useState('large');
   const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
 
   const userData = readDocument(email, form);
- 
-    userData.then((userDataResult) => {
-      form.setFieldsValue(userDataResult);
-    });
 
+  userData.then((userDataResult) => {
+    form.setFieldsValue(userDataResult);
+  });
 
-    const normFile = (e) => {
-      console.log('Upload event:', e);
-      if (Array.isArray(e)) {
-        return e;
-      }
-      return e?.fileList;
-    };
+  const [imageUpload, setimageUpload] = useState("")
+
+  const normFile = (e) => {
+    console.log("Upload event:", e.file);
+    // setimageUpload(e.file)
+    if (Array.isArray(e)) {
+      
+      return e;
+    }
+    return e?.fileList;
+  };
+
+ const uploadImage = () =>{
+    console.log(imageUpload)
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `image/${imageUpload.name}`)
+    uploadBytes(imageRef, imageUpload)
+    console.log('file download')
+ }
+
   return (
-    
     <Form
       className="profileSetting"
       {...formItemLayout}
@@ -70,16 +81,32 @@ const ProfileSetting = () => {
       onFinish={onFinish}
       scrollToFirstError
     >
-     <Form.Item label="Аватар">
-        <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-          <Upload.Dragger name="files" action="/upload.do">
+      <Form.Item label="Аватар">
+        <Form.Item
+          name="dragger"
+          valuePropName="fileList"
+          getValueFromEvent={normFile}
+          noStyle
+        >
+          <Upload.Dragger name="files" type="file"
+          onChange={(event)=> {setimageUpload(event)}}
+          accept="image/*"
+          >
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
             </p>
-            <p className="ant-upload-text">Click or drag file to this area to upload</p>
-            <p className="ant-upload-hint">Support for a single or bulk upload.</p>
+            <p className="ant-upload-text">
+              Click or drag file to this area to upload
+            </p>
+            <p className="ant-upload-hint">
+              Support for a single or bulk upload.
+            </p>
           </Upload.Dragger>
         </Form.Item>
+      </Form.Item>
+      
+      <Form.Item {...tailFormItemLayout}>
+      <Button onClick={uploadImage}  type="primary" icon={<UploadOutlined />} size={size} />
       </Form.Item>
       <Form.Item
         name="username"
@@ -95,7 +122,8 @@ const ProfileSetting = () => {
 
       <Form.Item {...tailFormItemLayout}>
         <Button
-          onClick={() => writeUserData(id, email, form.getFieldsValue())}
+          onClick={() => {writeUserData(id, email, form.getFieldsValue());
+          console.log(form.getFieldsValue())}}
           type="primary"
           htmlType="submit"
         >
@@ -103,7 +131,6 @@ const ProfileSetting = () => {
         </Button>
       </Form.Item>
     </Form>
-    
   );
 };
 export default ProfileSetting;
