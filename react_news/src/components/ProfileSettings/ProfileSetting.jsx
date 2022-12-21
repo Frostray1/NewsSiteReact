@@ -1,9 +1,10 @@
-
+import { useEffect } from "react";
 import { Button, Form, Input, Modal, Upload} from "antd";
-import { useAuth } from "hooks/use-auth";
-import writeUserData from "../WriteUserData";
 import { InboxOutlined, UploadOutlined } from '@ant-design/icons'
+
+import { useAuth } from "hooks/use-auth";
 import readDocument from '../../hooks/read-data-user'
+import writeUserData from "../WriteUserData";
 
 
 
@@ -40,28 +41,36 @@ const tailFormItemLayout = {
 
 const ProfileSetting = () => {
   const { id, email } = useAuth();
-
   const [form] = Form.useForm();
+
+  useEffect(
+    () => {
+      readDocument(email, form)
+        .then((result ) => {
+          if (result) {
+            const { username, aboutUser } = result;
+            form.setFieldsValue({ username, aboutUser })
+          }
+        })
+      .catch((err) => {
+        console.warn('Something went wrong!', err)
+      })
+    }, [email, form]
+  )
+
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
 
-  const userData = readDocument(email, form);
- 
-    userData.then((userDataResult) => {
-      form.setFieldsValue(userDataResult);
-    });
-
-
-    const normFile = (e) => {
-      console.log('Upload event:', e);
-      if (Array.isArray(e)) {
-        return e;
-      }
-      return e?.fileList;
-    };
+  const normFile = (e) => {
+    console.log('Upload event:', e);
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e?.fileList;
+  };
+  
   return (
-    
     <Form
       className="profileSetting"
       {...formItemLayout}
@@ -106,5 +115,5 @@ const ProfileSetting = () => {
     
   );
 };
+
 export default ProfileSetting;
-//
