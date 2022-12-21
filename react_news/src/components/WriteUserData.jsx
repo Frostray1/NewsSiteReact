@@ -9,7 +9,7 @@ function writeUserData(userId, email, valuesInput) {
     const db = doc(firestore, 'users/'+ email)
     const usersData = {
       userId: userId,
-      username: valuesInput.nickname,
+      username: valuesInput.username,
       email: email,
       aboutUser: valuesInput.aboutUser,
       // gender: gender,
