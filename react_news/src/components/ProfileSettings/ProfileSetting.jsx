@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import { Button, Form, Input, Modal, Upload} from "antd";
-import { InboxOutlined, UploadOutlined } from '@ant-design/icons'
+import { useEffect, useState } from "react";
+import { Button, Form, Input, message, Upload } from "antd";
+import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 
 import { useAuth } from "hooks/use-auth";
-import readDocument from '../../hooks/read-data-user'
+import readDocument from "../../hooks/read-data-user";
 import writeUserData from "../WriteUserData";
-
-
-
+// import {storage} from "../../firebase"
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import UploadAvatar from "./UploadAvatar"
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -43,31 +43,55 @@ const ProfileSetting = () => {
   const { id, email } = useAuth();
   const [form] = Form.useForm();
 
-  useEffect(
-    () => {
-      readDocument(email, form)
-        .then((result ) => {
-          if (result) {
-            const { username, aboutUser } = result;
-            form.setFieldsValue({ username, aboutUser })
-          }
-        })
-      .catch((err) => {
-        console.warn('Something went wrong!', err)
+  useEffect(() => {
+    readDocument(email, form)
+      .then((result) => {
+        if (result) {
+          const { username, aboutUser } = result;
+          form.setFieldsValue({ username, aboutUser });
+        }
       })
-    }, [email, form]
-  )
+      .catch((err) => {
+        console.warn("Something went wrong!", err);
+      });
+  }, [email, form]);
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
 
-  const normFile = (e) => {
-    console.log('Upload event:', e);
-    if (Array.isArray(e)) {
-      return e;
+  const [image, setImage] = useState(null);
+
+  
+  const handleChange = (e) => {
+    console.log("Upload event:", e.target.files[0]);
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
     }
-    return e?.fileList;
+  };
+
+  const handleUpload = () => {
+    const storage = getStorage();
+    const uploadTask = ref(storage, `images/${image.name}-${email}`);
+    uploadBytes(uploadTask, image).then((snapshot) => {
+      console.log("Uploaded a blob or file!");
+    });
+    console.log("Загрузка изображения");
+    getUrlImage(uploadTask);
+  };
+
+  const getUrlImage = (uploadTask) => {
+    console.log("Получение ЮРЛ");
+    getDownloadURL(uploadTask)
+      .then((url) => {
+        console.log(url);
+        // Or inserted into an <img> element
+        // const img = document.getElementById("myimg");
+        // img.setAttribute("src", url);
+      })
+      .catch((error) => {
+        // Handle any errors
+      });
   };
   
   return (
@@ -79,17 +103,12 @@ const ProfileSetting = () => {
       onFinish={onFinish}
       scrollToFirstError
     >
-     <Form.Item label="Аватар">
-        <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-          <Upload.Dragger name="files" action="/upload.do">
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
-            </p>
-            <p className="ant-upload-text">Click or drag file to this area to upload</p>
-            <p className="ant-upload-hint">Support for a single or bulk upload.</p>
-          </Upload.Dragger>
-        </Form.Item>
+      <Form.Item label="Upload" valuePropName="fileList">
+        <input type="file" onChange={handleChange} />
+        <button onClick={handleUpload}>Upload</button>
+        <UploadAvatar/>
       </Form.Item>
+
       <Form.Item
         name="username"
         label="Ник"
@@ -112,7 +131,6 @@ const ProfileSetting = () => {
         </Button>
       </Form.Item>
     </Form>
-    
   );
 };
 
