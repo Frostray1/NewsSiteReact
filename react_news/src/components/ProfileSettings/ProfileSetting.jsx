@@ -7,7 +7,7 @@ import readDocument from "../../hooks/read-data-user";
 import writeUserData from "../WriteUserData";
 // import {storage} from "../../firebase"
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import UploadAvatar, {getUrlImage} from "./UploadAvatar"
+import UploadAvatar , {getUrlImage} from "./UploadAvatar"
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -60,39 +60,21 @@ const ProfileSetting = () => {
     console.log("Received values of form: ", values);
   };
 
-  const [image, setImage] = useState(null);
-
   
-  const handleChange = (e) => {
-    console.log("Upload event:", e.target.files[0]);
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-  };
 
-  const handleUpload = () => {
-    const storage = getStorage();
-    const uploadTask = ref(storage, `images/${image.name}-${email}`);
-    uploadBytes(uploadTask, image).then((snapshot) => {
-      console.log("Uploaded a blob or file!");
-    });
-    console.log("Загрузка изображения");
-    getUrlImage(uploadTask);
-  };
-
-  const getUrlImage = (uploadTask) => {
-    console.log("Получение ЮРЛ");
-    getDownloadURL(uploadTask)
-      .then((url) => {
-        console.log(url);
-        // Or inserted into an <img> element
-        // const img = document.getElementById("myimg");
-        // img.setAttribute("src", url);
-      })
-      .catch((error) => {
-        // Handle any errors
-      });
-  };
+  // const getUrlImage = (uploadTask) => {
+  //   console.log("Получение ЮРЛ");
+  //   getDownloadURL(uploadTask)
+  //     .then((url) => {
+  //       console.log(url);
+  //       // Or inserted into an <img> element
+  //       // const img = document.getElementById("myimg");
+  //       // img.setAttribute("src", url);
+  //     })
+  //     .catch((error) => {
+  //       // Handle any errors
+  //     });
+  // };
   
   return (
     <Form
@@ -104,8 +86,6 @@ const ProfileSetting = () => {
       scrollToFirstError
     >
       <Form.Item label="Upload" valuePropName="fileList">
-        <input type="file" onChange={handleChange} />
-        <button onClick={handleUpload}>Upload</button>
         <UploadAvatar/>
       </Form.Item>
 

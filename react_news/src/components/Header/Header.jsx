@@ -1,17 +1,23 @@
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Input, Button, Dropdown } from "antd";
+import { Avatar, Input, Button, Dropdown, Form } from "antd";
 import { NotificationOutlined } from "@ant-design/icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth, token } from "hooks/use-auth";
 import { removeUser } from "store/slices/userSlice";
 import { useDispatch } from "react-redux";
+import { doc, getFirestore } from "firebase/firestore";
+import readDocument from "hooks/read-data-user";
 
 
 
 function Header() {
   const { isAuth, email } = useAuth();
   const dispatch = useDispatch();
+  const firestore = getFirestore();
+  console.log("firestore ",firestore)
+    const db = doc(firestore, 'users/'+ email)
+    console.log("db ",db)
 
   const items = [
     {
@@ -31,6 +37,24 @@ function Header() {
       ),
     },
   ];
+  // const [form] = Form.useForm();
+  const [urlAvatar, setUrlAvatar] = useState(null);
+  useEffect(() => {
+    readDocument(email)
+      .then((result) => {
+        if (result) {
+          const { urlAvatar } = result;
+          console.log(urlAvatar);
+          setUrlAvatar(urlAvatar)
+        }
+      })
+      .catch((err) => {
+        console.warn("Something went wrong!", err);
+      });
+  }, [email]);
+
+
+
 
   return isAuth ? (
     <>
@@ -57,7 +81,7 @@ function Header() {
                 style={{ backgroundColor: "#fff", color: "#000" }}
                 shape="square"
                 size="large"
-                icon={<UserOutlined />}
+                src={urlAvatar}
               />
             </Link>
           </Dropdown>
@@ -78,7 +102,7 @@ function Header() {
               style={{ backgroundColor: "#fff", color: "#000" }}
               shape="square"
               size="large"
-              icon={<UserOutlined />}
+              icon={urlAvatar}
             />
           </Link>
         </div>

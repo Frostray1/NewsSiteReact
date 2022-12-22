@@ -2,11 +2,12 @@ import {  getDoc } from "firebase/firestore";
 import { doc, getFirestore } from "firebase/firestore";
 
 class userData {
-    constructor(userId, name, email, aboutUser) {
+    constructor(userId, name, email, aboutUser,urlAvatar) {
       this.userId = userId;
       this.username = name;
       this.email = email;
       this.aboutUser = aboutUser;
+      this.urlAvatar=urlAvatar
     }
     toString() {
       return (
@@ -16,7 +17,9 @@ class userData {
         ", " +
         this.email +
         ", " +
-        this.aboutUser
+        this.aboutUser +
+        ", " +
+        this.urlAvatar
       );
     }
   }
@@ -29,11 +32,12 @@ class userData {
         username: userData.username,
         email: userData.email,
         aboutUser: userData.aboutUser,
+        urlAvatar: userData.urlAvatar,
       };
     },
     fromFirestore: (snapshot, options) => {
       const data = snapshot.data(options);
-      return new userData(data.userId, data.username, data.email, data.aboutUser);
+      return new userData(data.userId, data.username, data.email, data.aboutUser, data.urlAvatar);
     },
   };
   

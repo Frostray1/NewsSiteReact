@@ -3,9 +3,9 @@ import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import { useAuth } from "hooks/use-auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { doc, setDoc, getFirestore } from "firebase/firestore";
 
-
-const getBase64 = (img, callback) => {
+  const getBase64 = (img, callback) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result));
     reader.readAsDataURL(img);
@@ -23,29 +23,37 @@ const getBase64 = (img, callback) => {
     return isJpgOrPng && isLt2M;
   };
 
-  const App = () => {
+  
+
+
+
+  
+  const UploadAvatar = () => {
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState();
+    // const [image, setSetImage] = useState(null);
     const { email } = useAuth();
+
     const handleUpload = (image) => {
+      
         const storage = getStorage();
-        const uploadTask = ref(storage, `images/${image.name}-${email}`);
-        uploadBytes(uploadTask, image).then((snapshot) => {
-          getBase64 (image, (url)=>{
+        const uploadTask = ref(storage, `images/${email}-${image.file.name}`);
+        uploadBytes(uploadTask, image.file).then((snapshot) => {
+          getBase64 (image.file, (url)=>{
             setLoading(false);
             setImageUrl(url);
-
+            getUrlImage(uploadTask);
           })
           
           return 
         });
       };
-
       const getUrlImage = (uploadTask) => {
         console.log("Получение ЮРЛ");
         getDownloadURL(uploadTask)
           .then((url) => {
             console.log(url);
+            writeUserDataImage(url)
             return(url)
             // Or inserted into an <img> element
             // const img = document.getElementById("myimg");
@@ -55,6 +63,19 @@ const getBase64 = (img, callback) => {
             // Handle any errors
           });
       };
+    
+      const writeUserDataImage = (url) => {
+     
+        const firestore = getFirestore();
+        const db = doc(firestore, 'users/'+ email)
+        const usersData = {
+          urlAvatar: url,
+        }
+        console.log("-----",usersData)
+        setDoc(db, usersData, { merge: true });
+      
+      }
+
       
 
     const handleChange = (info) => {
@@ -62,7 +83,7 @@ const getBase64 = (img, callback) => {
         setLoading(true);
         return;
       }
-      handleUpload(info.file.originFileObj)
+      // setSetImage(info.file.originFileObj)
 
     };
     const uploadButton = (
@@ -79,13 +100,14 @@ const getBase64 = (img, callback) => {
     );
     return (
       <Upload
+        
         name="avatar"
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        action = "#"
         beforeUpload={beforeUpload}
         onChange={handleChange}
+        customRequest={handleUpload}
       >
         {imageUrl ? (
           <img
@@ -93,6 +115,8 @@ const getBase64 = (img, callback) => {
             alt="avatar"
             style={{
               width: '100%',
+              height: '100%',
+              
             }}
           />
         ) : (
@@ -101,4 +125,6 @@ const getBase64 = (img, callback) => {
       </Upload>
     );
   };
-  export default App;
+
+
+  export default UploadAvatar;
