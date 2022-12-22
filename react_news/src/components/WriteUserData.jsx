@@ -2,7 +2,7 @@
 import { doc, setDoc, getFirestore } from "firebase/firestore";
 
 
-function writeUserData(userId, email, valuesInput) {
+function writeUserData(userId, email, valuesInput , urlImage) {
  
     const firestore = getFirestore();
     console.log(firestore)
@@ -12,8 +12,10 @@ function writeUserData(userId, email, valuesInput) {
       username: valuesInput.username,
       email: email,
       aboutUser: valuesInput.aboutUser,
+      urlAvatar: urlImage,
       // gender: gender,
     }
+    console.log("-----",usersData)
     setDoc(db, usersData);
   
   }

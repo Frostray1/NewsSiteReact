@@ -27,7 +27,7 @@ const getBase64 = (img, callback) => {
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState();
     const { email } = useAuth();
-    const handleUpload = (image, info) => {
+    const handleUpload = (image) => {
         const storage = getStorage();
         const uploadTask = ref(storage, `images/${image.name}-${email}`);
         uploadBytes(uploadTask, image).then((snapshot) => {
@@ -36,8 +36,24 @@ const getBase64 = (img, callback) => {
             setImageUrl(url);
 
           })
+          
           return 
         });
+      };
+
+      const getUrlImage = (uploadTask) => {
+        console.log("Получение ЮРЛ");
+        getDownloadURL(uploadTask)
+          .then((url) => {
+            console.log(url);
+            return(url)
+            // Or inserted into an <img> element
+            // const img = document.getElementById("myimg");
+            // img.setAttribute("src", url);
+          })
+          .catch((error) => {
+            // Handle any errors
+          });
       };
       
 
@@ -46,7 +62,7 @@ const getBase64 = (img, callback) => {
         setLoading(true);
         return;
       }
-      handleUpload(info.file.originFileObj, info)
+      handleUpload(info.file.originFileObj)
 
     };
     const uploadButton = (
@@ -67,6 +83,7 @@ const getBase64 = (img, callback) => {
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
+        action = "#"
         beforeUpload={beforeUpload}
         onChange={handleChange}
       >

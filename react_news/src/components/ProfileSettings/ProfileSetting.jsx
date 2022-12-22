@@ -7,7 +7,7 @@ import readDocument from "../../hooks/read-data-user";
 import writeUserData from "../WriteUserData";
 // import {storage} from "../../firebase"
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import UploadAvatar from "./UploadAvatar"
+import UploadAvatar, {getUrlImage} from "./UploadAvatar"
 const formItemLayout = {
   labelCol: {
     xs: {
