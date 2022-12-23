@@ -37,7 +37,6 @@ function Header() {
       ),
     },
   ];
-  // const [form] = Form.useForm();
   const [urlAvatar, setUrlAvatar] = useState(null);
   useEffect(() => {
     readDocument(email)
