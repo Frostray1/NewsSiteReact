@@ -61,21 +61,6 @@ const ProfileSetting = () => {
   };
 
   
-
-  // const getUrlImage = (uploadTask) => {
-  //   console.log("Получение ЮРЛ");
-  //   getDownloadURL(uploadTask)
-  //     .then((url) => {
-  //       console.log(url);
-  //       // Or inserted into an <img> element
-  //       // const img = document.getElementById("myimg");
-  //       // img.setAttribute("src", url);
-  //     })
-  //     .catch((error) => {
-  //       // Handle any errors
-  //     });
-  // };
-  
   return (
     <Form
       className="profileSetting"
