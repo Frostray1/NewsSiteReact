@@ -49,10 +49,10 @@ import { doc, setDoc, getFirestore } from "firebase/firestore";
         });
       };
       const getUrlImage = (uploadTask) => {
-        console.log("Получение ЮРЛ");
+        // console.log("Получение ЮРЛ");
         getDownloadURL(uploadTask)
           .then((url) => {
-            console.log(url);
+            // console.log(url);
             writeUserDataImage(url)
             return(url)
             // Or inserted into an <img> element
@@ -71,7 +71,7 @@ import { doc, setDoc, getFirestore } from "firebase/firestore";
         const usersData = {
           urlAvatar: url,
         }
-        console.log("-----",usersData)
+        // console.log("-----",usersData)
         setDoc(db, usersData, { merge: true });
       
       }

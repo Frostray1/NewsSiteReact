@@ -15,9 +15,9 @@ function Header() {
   const { isAuth, email } = useAuth();
   const dispatch = useDispatch();
   const firestore = getFirestore();
-  console.log("firestore ",firestore)
+  // console.log("firestore ",firestore)
     const db = doc(firestore, 'users/'+ email)
-    console.log("db ",db)
+    // console.log("db ",db)
 
   const items = [
     {
@@ -37,20 +37,20 @@ function Header() {
       ),
     },
   ];
-  const [urlAvatar, setUrlAvatar] = useState(null);
-  useEffect(() => {
-    readDocument(email)
-      .then((result) => {
-        if (result) {
-          const { urlAvatar } = result;
-          console.log(urlAvatar);
-          setUrlAvatar(urlAvatar)
-        }
-      })
-      .catch((err) => {
-        console.warn("Something went wrong!", err);
-      });
-  }, [email]);
+  // const [urlAvatar, setUrlAvatar] = useState(null);
+  // useEffect(() => {
+  //   readDocument(email)
+  //     .then((result) => {
+  //       if (result) {
+  //         const { urlAvatar } = result;
+  //         console.log(urlAvatar);
+  //         setUrlAvatar(urlAvatar)
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.warn("Something went wrong!", err);
+  //     });
+  // }, [email]);
 
 
 
@@ -80,7 +80,7 @@ function Header() {
                 style={{ backgroundColor: "#fff", color: "#000" }}
                 shape="square"
                 size="large"
-                src={urlAvatar}
+                icon={<UserOutlined/>}
               />
             </Link>
           </Dropdown>
@@ -101,7 +101,7 @@ function Header() {
               style={{ backgroundColor: "#fff", color: "#000" }}
               shape="square"
               size="large"
-              icon={urlAvatar}
+              icon={<UserOutlined />}
             />
           </Link>
         </div>
