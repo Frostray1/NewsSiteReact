@@ -4,15 +4,27 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import Sider from 'components/Sider/Sider';
 import { Button, Input } from 'antd';
 import AddPosts from 'components/Posts/AddPosts';
-
+import { useEffect, useState } from "react";
+import readDocument from "../../hooks/read-data-user";
 const { TextArea } = Input;
 
 const ProfilePage = () => {
   const { isAuth, email } = useAuth();
+  const [userInfo, setUserInfo] = useState("");
+  useEffect(() => {
+    readDocument(email)
+      .then((result) => {
+        if (result) {
+          setUserInfo(result);
+         
+        }
+      })
+      .catch((err) => {
+        console.warn("Something went wrong!", err);
+      });
+  }, [email]);
 
 
-
-  
   return isAuth ? (
     <div className='profilePage_profile'>
         <Header/>
@@ -22,10 +34,10 @@ const ProfilePage = () => {
             <div className="profile__block">
             <div className="wrapper" style={{display:'flex'}}>
               
-              <img className='userImg' src="" alt="" />
+              <img className='userImg' src={userInfo.urlAvatar} alt="" />
               <div className="profileUser__block">
-                <h1>Nick</h1>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum eius quia deserunt dolorem! Cum soluta deserunt harum voluptate repellendus distinctio praesentium debitis aliquid nihil, amet eaque, asperiores, ullam voluptatum. Voluptatum?</p>
+                <h1>{userInfo.username}</h1>
+                <p>{userInfo.aboutUser}</p>
               </div>
              </div>
              <AddPosts/>
