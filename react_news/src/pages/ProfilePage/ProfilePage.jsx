@@ -39,7 +39,7 @@ const ProfilePage = () => {
                 <p>{userInfo.aboutUser}</p>
               </div>
               </div>
-              <TextArea className='inputPosts' placeholder="Что у вас нового?" autoSize />
+              <TextArea className='inputPosts' placeholder="Что у вас нового??" autoSize />
              </div>
              
             </div>
