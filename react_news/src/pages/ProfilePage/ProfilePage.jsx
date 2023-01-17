@@ -1,9 +1,8 @@
 import Header from '../../components/Header/Header';
 import { useAuth } from "hooks/use-auth";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Navigate} from "react-router-dom";
 import Sider from 'components/Sider/Sider';
-import { Button, Input } from 'antd';
-import AddPosts from 'components/Posts/AddPosts';
+import {Input } from 'antd';
 import { useEffect, useState } from "react";
 import readDocument from "../../hooks/read-data-user";
 const { TextArea } = Input;
@@ -32,15 +31,17 @@ const ProfilePage = () => {
             <Sider/>
             
             <div className="profile__block">
-            <div className="wrapper" style={{display:'flex'}}>
-              
+            <div className="wrapper">
+              <div className="dataUser">
               <img className='userImg' src={userInfo.urlAvatar} alt="" />
               <div className="profileUser__block">
                 <h1>{userInfo.username}</h1>
                 <p>{userInfo.aboutUser}</p>
               </div>
+              </div>
+              <TextArea className='inputPosts' placeholder="Что у вас нового?" autoSize />
              </div>
-             <AddPosts/>
+             
             </div>
             
         </div>

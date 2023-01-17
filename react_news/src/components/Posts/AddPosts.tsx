@@ -33,19 +33,12 @@ const AddPosts: FC<IAddpost> = ({ setPosts }) => {
 
   return (
     <div className="posts__block">
-      <div className="wrapper">
-        <Input // TextArea нужно использовать
-          className="content__textInput"
-          placeholder="Что нового?"
-          // rows={10}
-          onKeyPress={addPostHandler}
-          onChange={(e) => setContent(e.target.value)}
-          value={content}
-        />
+      
+        <TextArea placeholder="Autosize height based on content lines" autoSize />
         <Button className="postsBtn__create" type="primary">
           Создать пост
         </Button>
-      </div>
+  
     </div>
   );
 };
