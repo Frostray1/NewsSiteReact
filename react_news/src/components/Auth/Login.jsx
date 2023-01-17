@@ -10,7 +10,6 @@ const Login = () =>{
 
     const handleLogin = (email, password) => {
         const auth = getAuth();
-        console.log('login');
         signInWithEmailAndPassword(auth,email, password)
         .then(({user})=> {
             console.log(user);
