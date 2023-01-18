@@ -27,8 +27,9 @@
 
 .posts__block{
     width: 100%;
-    margin-top:2rem;
-
+    margin-bottom: 4rem;
+    
+    margin-top: 2rem;
 }
 .wrapper{
     position: relative;
@@ -43,18 +44,20 @@
 .content__textInput{
     margin: 2em auto;
     width: 100%;
+    
 }
 .postsBtn__create{
     margin-top:0.5em;
     float: right;
     
     
+    
 }
 .posts__window{
-    margin-top: 4rem;
+    
     border:1px solid gray;
     border-radius: 25px;
-
+    margin-top: 1rem;
 }
 
 

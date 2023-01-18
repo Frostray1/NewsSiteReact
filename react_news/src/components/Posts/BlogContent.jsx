@@ -21,7 +21,7 @@ const BlogContent = () => {
 
     const blogPosts = posts.map((item)=>{
         return(
-            <div className="posts__window">
+            <div key={item.id} className="posts__window">
               <div className="posts__info">
                 <img src={userInfo.urlAvatar} alt="" />
                 <h1>{userInfo.username}</h1>

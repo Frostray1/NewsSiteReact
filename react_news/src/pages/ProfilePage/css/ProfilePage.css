@@ -27,6 +27,7 @@
 
 .posts__block {
   width: 100%;
+  margin-bottom: 4rem;
   margin-top: 2rem;
 }
 
@@ -51,9 +52,9 @@
 }
 
 .posts__window {
-  margin-top: 4rem;
   border: 1px solid gray;
   border-radius: 25px;
+  margin-top: 1rem;
 }
 
 .posts__info {
