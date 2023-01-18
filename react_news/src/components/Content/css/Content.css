@@ -1,0 +1,41 @@
+.content__container {
+  width: 100%;
+}
+
+.wrapper {
+  max-width: 80%;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.ant-card {
+  margin: 30px auto;
+}
+
+.active {
+  color: blue;
+}
+
+.likes {
+  display: flex;
+  font-size: 24px;
+  float: right;
+}
+
+.btn__likes {
+  text-align: center;
+  margin-right: 15px;
+}
+.btn__likes p {
+  font-size: 16px;
+  line-height: 10px;
+}
+
+.btn__dislikes {
+  text-align: center;
+  margin-right: 15px;
+}
+.btn__dislikes p {
+  font-size: 16px;
+  line-height: 10px;
+}

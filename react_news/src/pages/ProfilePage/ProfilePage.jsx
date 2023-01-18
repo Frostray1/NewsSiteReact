@@ -5,6 +5,8 @@ import Sider from 'components/Sider/Sider';
 import {Input } from 'antd';
 import { useEffect, useState } from "react";
 import readDocument from "../../hooks/read-data-user";
+import AddPosts from 'components/Posts/AddPosts';
+import { IPost } from "types";
 const { TextArea } = Input;
 
 const ProfilePage = () => {
@@ -23,6 +25,7 @@ const ProfilePage = () => {
       });
   }, [email]);
 
+ 
 
   return isAuth ? (
     <div className='profilePage_profile'>
@@ -39,7 +42,8 @@ const ProfilePage = () => {
                 <p>{userInfo.aboutUser}</p>
               </div>
               </div>
-              <TextArea className='inputPosts' placeholder="Что у вас нового??" autoSize />
+              {/* <TextArea className='inputPosts' placeholder="Что у вас нового??" autoSize /> */}
+              <AddPosts/>
              </div>
              
             </div>

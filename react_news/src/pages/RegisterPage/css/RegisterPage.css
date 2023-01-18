@@ -1,0 +1,29 @@
+.registerPage {
+  background: #eaeaea;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.registerPage__window {
+  background: rgba(255, 255, 255, 0.6);
+  width: 600px;
+  height: 300px;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.register_text {
+  text-align: center;
+  margin-top: 2em;
+  font-size: 15px;
+}
+
+.aboutlogin {
+  font-size: 14px;
+  margin: 5em auto;
+  width: 240px;
+}

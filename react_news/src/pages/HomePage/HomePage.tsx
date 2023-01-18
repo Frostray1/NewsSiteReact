@@ -14,7 +14,7 @@ const HomePage =()  => {
         <div className='mainContent'>
             <Sider/>
             <div className="posts">
-              <AddPosts setPosts={setPosts}/>
+              <AddPosts />
               <Posts posts={posts}/>
               </div>
             

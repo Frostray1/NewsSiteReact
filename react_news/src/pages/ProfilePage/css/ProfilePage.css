@@ -1,0 +1,51 @@
+.profile__block {
+  width: 100vw;
+  margin: 2rem auto;
+}
+
+.dataUser {
+  display: flex;
+}
+
+.userImg {
+  width: 200px;
+  height: 200px;
+}
+
+.profileUser__block {
+  width: 60%;
+  margin-left: 3rem;
+}
+.profileUser__block p {
+  margin-top: 2rem;
+}
+
+.navContent__block {
+  display: flex;
+  background: #eaeaea;
+}
+
+.posts__block {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.wrapper {
+  position: relative;
+  width: 70%;
+  height: 220px;
+}
+
+.inputPosts {
+  margin-top: 2rem;
+}
+
+.content__textInput {
+  margin: 2em auto;
+  width: 100%;
+}
+
+.postsBtn__create {
+  margin-top: 0.5em;
+  float: right;
+}
