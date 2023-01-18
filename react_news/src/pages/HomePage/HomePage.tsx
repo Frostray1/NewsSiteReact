@@ -4,7 +4,7 @@ import Sider from '../../components/Sider/Sider';
 import AddPosts from 'components/Posts/AddPosts';
 import { IPost } from 'types';
 import { useState } from 'react';
-import Posts from 'components/Posts/Posts';
+
 
 const HomePage =()  => {
   const [posts,setPosts] = useState<IPost[]>([])
@@ -15,7 +15,6 @@ const HomePage =()  => {
             <Sider/>
             <div className="posts">
               <AddPosts />
-              <Posts posts={posts}/>
               </div>
             
         </div>

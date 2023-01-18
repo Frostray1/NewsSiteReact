@@ -49,3 +49,33 @@
   margin-top: 0.5em;
   float: right;
 }
+
+.posts__window {
+  margin-top: 4rem;
+  border: 1px solid gray;
+  border-radius: 25px;
+}
+
+.posts__info {
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+.posts__info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  margin-right: 1rem;
+}
+.posts__info h1 {
+  font-size: 16px;
+}
+
+.posts__data {
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 0.5rem;
+  margin-top: 0.5rem;
+}
