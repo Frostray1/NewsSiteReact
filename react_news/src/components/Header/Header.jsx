@@ -9,15 +9,11 @@ import { useDispatch } from "react-redux";
 import { doc, getFirestore } from "firebase/firestore";
 import readDocument from "hooks/read-data-user";
 
-
-
 function Header() {
   const { isAuth, email } = useAuth();
   const dispatch = useDispatch();
   const firestore = getFirestore();
-  // console.log("firestore ",firestore)
-    const db = doc(firestore, 'users/'+ email)
-    // console.log("db ",db)
+  const db = doc(firestore, "users/" + email);
 
   const items = [
     {
@@ -32,28 +28,11 @@ function Header() {
       key: "3",
       label: (
         <Link to="/" onClick={() => dispatch(removeUser())}>
-         Выйти
+          Выйти
         </Link>
       ),
     },
   ];
-  // const [urlAvatar, setUrlAvatar] = useState(null);
-  // useEffect(() => {
-  //   readDocument(email)
-  //     .then((result) => {
-  //       if (result) {
-  //         const { urlAvatar } = result;
-  //         console.log(urlAvatar);
-  //         setUrlAvatar(urlAvatar)
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.warn("Something went wrong!", err);
-  //     });
-  // }, [email]);
-
-
-
 
   return isAuth ? (
     <>
@@ -80,7 +59,7 @@ function Header() {
                 style={{ backgroundColor: "#fff", color: "#000" }}
                 shape="square"
                 size="large"
-                icon={<UserOutlined/>}
+                icon={<UserOutlined />}
               />
             </Link>
           </Dropdown>
