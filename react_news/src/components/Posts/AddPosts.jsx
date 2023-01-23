@@ -5,7 +5,7 @@ import React from 'react'
 const AddPosts = () => {
 
     const [content, setContent] = React.useState('');
-
+  console.log(content);
   return (
     <div className="posts__block">
       <TextArea

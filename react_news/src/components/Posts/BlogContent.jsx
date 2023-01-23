@@ -3,6 +3,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { posts } from './Posts';
 import readDocument from 'hooks/read-data-user';
 import { useAuth } from 'hooks/use-auth';
+import BlogCard from './BlogCard';
 
 const BlogContent = () => {
     const { isAuth, email } = useAuth();
@@ -18,20 +19,15 @@ const BlogContent = () => {
           console.warn("Something went wrong!", err);
         });
     }, [email]);
-
     const blogPosts = posts.map((item)=>{
         return(
-            <div key={item.id} className="posts__window">
-              <div className="posts__info">
-                <img src={userInfo.urlAvatar} alt="" />
-                <h1>{userInfo.username}</h1>
-              </div>
-              <div className="posts__data">
-                <p>
-                  {item.description}
-                </p>
-              </div>
-            </div>
+            <BlogCard
+            key={item.id}
+            avatar={userInfo.urlAvatar}
+            username={userInfo.username}
+            description = {item.description}
+
+            />
         )
     })
 
