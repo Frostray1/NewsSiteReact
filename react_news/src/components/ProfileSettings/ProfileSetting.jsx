@@ -4,7 +4,7 @@ import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 
 import { useAuth } from "hooks/use-auth";
 import readDocument from "../../hooks/read-data-user";
-import writeUserData from "../WriteUserData";
+import writeUserData from "../../hooks/WriteUserData";
 // import {storage} from "../../firebase"
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import UploadAvatar , {getUrlImage} from "./UploadAvatar"

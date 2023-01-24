@@ -19,6 +19,12 @@ const BlogContent = () => {
           console.warn("Something went wrong!", err);
         });
     }, [email]);
+
+    const addNewBlogPost = (blogPost) => {
+      
+    }
+
+
     const blogPosts = posts.map((item)=>{
         return(
             <BlogCard
