@@ -4,12 +4,12 @@ import { initializeApp  } from "firebase/app";
 import "firebase/storage"
 
 const firebaseConfig = {
- apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
- authDomain:process.env.REACT_APP_AUTH_DOMAIN,
- projectId:process.env.REACT_APP_PROJECT_ID,
- storageBucket: process.env.REACT_APP_STORAGE_BACKET,
- messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
- appId: process.env.REACT_APP_APP_ID,
+ apiKey: 'AIzaSyATpBAfRTD-lGgE6R6xO_1IB0eL0Uk0TyM',
+ authDomain:'auth-news-1d84d.firebaseapp.com',
+ projectId:'auth-news-1d84d',
+ storageBucket: 'auth-news-1d84d.appspot.com',
+ messagingSenderId: '814623165487',
+ appId: '1:814623165487:web:c59fdf1312e91b143c4ada',
 };
 
 
